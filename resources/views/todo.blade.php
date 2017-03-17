@@ -2,18 +2,21 @@
 <html>
 <head>
 	<title>ToDo List</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" href="">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<h1>ToDo List</h1>
-				<ul>
+				<ol>
 					@foreach($todo as $td)
-					<li>{{ $td->item }}</li>
+					<li>{{ $td->item }} 
+					<a href="{{ url('todo/'.$td->id_todo) }}" class="btn btn-danger">X</a>
+					</li>
 					@endforeach
-				</ul>
+				</ol>
 				<form action="todo" method="POST">
 					{{ csrf_field() }}
 					<div class="row">

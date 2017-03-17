@@ -7,7 +7,8 @@ use App\Todo;
 
 class TodoController extends Controller
 {
-    public function index()
+
+	public function index()
     {
     	$todo = Todo::all();
     	return view('todo')->with('todo', $todo);
@@ -15,12 +16,17 @@ class TodoController extends Controller
 
     public function store(Request $request)
     {
-    	$todo_item = $request->input("todo_item");
+    	$todo_item = $request->input('todo_item');
     	$todo = new Todo;
     	$todo->item = $todo_item;
-    	$todo-> save();
+    	$todo->save();
 
     	$todo = Todo::all();
     	return view('todo')->with('todo', $todo);
+    }
+
+    public function destroy(request $request, Todo $td){
+        $td->delete();
+        return redirect('todo');
     }
 }
